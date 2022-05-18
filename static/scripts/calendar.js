@@ -1,3 +1,5 @@
+const res = require("express/lib/response");
+
 class Cal {
     constructor(divId) {
         //Memorizza l'id del blocco
@@ -134,12 +136,18 @@ function getId(id) {
 }
 
 var requestWithParams = async (id, day) => {
+    var token = "frgrgtgrt";
+
     try {
-        fetch("/api/v1/GiorniCalendarioPubblico/" + day.join("-"))
+        fetch("/api/v1/GiorniCalendarioPersonale/" + day.join("-"), {
+            method: 'GET',
+            headers: {
+                'x-access-token': token
+            }
+        })
             .then(resp => resp.json())
             .then(resp => {
-                console.log(resp);
-                if (resp !== undefined) {
+                if (resp.status === 200) {
                     var category = resp[0].category, firstIteration = true;
                     for (var f of resp) {
                         if (category !== f.category || firstIteration) {
@@ -157,6 +165,10 @@ var requestWithParams = async (id, day) => {
                     <a href=\"" + object.id + "\" class=\"btn btn-primary\" name=\"cardButton\">Maggiori informazioni...</a></div></div>";
                         }
                         document.getElementById(id).innerHTML += "</div></li></ul>";
+                    }
+                } else {
+                    if(resp.status === 404) {
+                        document.getElementById(id).textContent = "Nessun evento trovato per la data richiesta.";
                     }
                 }
             });
