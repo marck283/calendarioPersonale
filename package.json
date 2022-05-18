@@ -1,0 +1,22 @@
+{
+  "name": "calendariopersonale",
+  "version": "1.0.0",
+  "description": "Un semplice calendario personale",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marck283/calendarioPersonale.git"
+  },
+  "author": "Marco Lasagna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marck283/calendarioPersonale/issues"
+  },
+  "homepage": "https://github.com/marck283/calendarioPersonale#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
